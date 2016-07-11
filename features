@@ -1,3 +1,4 @@
 Views
 - Places View: list
-- Add a new place: create
+- Add a new place: create form
+- User login, logout, sessions
