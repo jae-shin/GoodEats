@@ -46,7 +46,7 @@ class App extends React.Component {
         <div className="col s12"><h3 className="center">Good Eats</h3></div>
         <div className="row">
           <PlaceList places={this.state.data}/>
-          <CreateForm handleSubmitNewPlace={this.handleSubmitNewPlace.bind(this)}/>
+          <RightPanel handleSubmitNewPlace={this.handleSubmitNewPlace.bind(this)}/>
         </div>
       </div>
     );

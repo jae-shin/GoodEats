@@ -20,6 +20,21 @@ module.exports = function(app, express) {
       .then(place => res.status(201).end())
       .catch(error => res.status(500).send({error: error.message}));
   });
+
+  app.post('/signup', function(req, res) {
+    var user = req.body;
+    User.findOne({username: user.username})
+      .then(function(user) {
+        if (user) {
+          res.status(500).send({error: 'user already exists!'});
+        } else {
+          User.create({username: user.username, password: user.password})
+            .then(function(user) {
+              res.status(200).end();
+            });
+        }
+      });
+  });
 };
 
 
