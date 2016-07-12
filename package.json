@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "compile": "babel . --out-dir compiled --presets=es2015,react --ignore=node_modules,compiled,server --source-maps inline --watch",
+    "compile": "babel client/components --out-dir client/compiled --presets=es2015,react --ignore=node_modules,compiled,server --source-maps inline --watch",
     "start": "nodemon --ignore node_modules server/server.js"
   },
   "repository": {
@@ -22,15 +22,10 @@
     "bluebird": "^3.4.1",
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
-    "express-react-views": "^0.10.2",
     "express-session": "^1.14.0",
-    "materialize-css": "^0.97.6",
     "mongoose": "^4.5.3",
     "morgan": "^1.7.0",
-    "path": "^0.12.7",
-    "react": "^15.2.1",
-    "react-dom": "^15.2.1",
-    "react-router": "^2.5.2"
+    "path": "^0.12.7"
   },
   "devDependencies": {
     "babel-cli": "^6.10.1",

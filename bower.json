@@ -1,0 +1,22 @@
+{
+  "name": "2016-06-mvp",
+  "description": "Your go-to resource for great eat spots in the area.",
+  "main": "server.js",
+  "authors": [
+    "Jae Shin <jae5464@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/jae-shin/2016-06-mvp",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "react": "^15.2.1",
+    "Materialize": "materialize#^0.97.6"
+  }
+}

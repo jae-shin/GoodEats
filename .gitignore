@@ -28,6 +28,8 @@ dist/
 node_modules/
 bower_components/
 compiled/
+client/lib
+client/compiled
 
 # Floobits
 .floo
