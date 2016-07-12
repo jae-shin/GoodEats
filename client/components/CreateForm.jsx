@@ -20,6 +20,23 @@ class CreateForm extends React.Component {
     this.setState({menus: e.target.value});
   }
 
+  handlePost(place) {
+    $.ajax({
+      url: '/createNewPlace', 
+      type: 'POST',
+      data: JSON.stringify(place),
+      contentType: 'application/json',
+      success: function(data) {
+        // browserHistory push
+        browserHistory.push('/places');
+        console.log('successfully posted new place: ', place);
+      }.bind(this),
+      error: function(data) {
+        console.error('failed to post new place: ', data);
+      }
+    });
+  }
+
   handleSubmit(e) {
     e.preventDefault();
 
@@ -34,7 +51,7 @@ class CreateForm extends React.Component {
         menus: ''
       });
 
-      this.props.handleSubmitNewPlace({
+      this.handlePost({
         name: name,
         time: time,
         menus: menus
