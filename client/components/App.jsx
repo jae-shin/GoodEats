@@ -5,9 +5,11 @@
 // var Route = ReactRouter.Route;
 // var Link = ReactRouter.Link;
 
-var App = (props) => (
-  <div>
-    <h3>{props.title}</h3>
+var App = ({data}) => (
+  <div className="container">
+    <h3>Good Eats</h3>
+    <CreateForm />
+    <PlaceList places={data}/>
   </div>
 );
 
