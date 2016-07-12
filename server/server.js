@@ -1,11 +1,14 @@
 // Express server set up
 var express = require('express');
 
+// Mongoose db connection
+var db = require('./config/db');
+
 // Express middleware
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
 
-// set port to 8000
+// set port to 8080
 var port = 8080;
 var app = express();
 
