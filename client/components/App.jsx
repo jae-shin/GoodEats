@@ -14,3 +14,5 @@ var App = () => (
     </ul>
   </div>
 );
+
+window.App = App;
