@@ -44,20 +44,20 @@ class CreateForm extends React.Component {
   
   render() {
     return (
-      <div>
+      <div className="col s4 offset-s2">
         <form className="section" onSubmit={this.handleSubmit.bind(this)}>
           <input 
-            type="text" placeholder="name of the food spot..." 
+            type="text" placeholder="name of the place" 
             value={this.state.name}
             onChange={this.handleNameChange.bind(this)}
           />
           <input 
-            type="number" placeholder="walking time (mins) from Hack Reactor (please enter a number)..." 
+            type="number" placeholder="walking time in mins" 
             value={this.state.time}
             onChange={this.handleTimeChange.bind(this)}
           />
           <input 
-            type="text" placeholder="include recommended dishes here (separate multiple with commas)..." 
+            type="text" placeholder="good dishes" 
             value={this.state.menus}
             onChange={this.handleMenusChange.bind(this)}
           />

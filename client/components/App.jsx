@@ -1,10 +1,3 @@
-// import React from 'react'
-// import { render } from 'react-dom'
-// import { Router, Route, Link, browserHistory } from 'react-router'
-// var Router = ReactRouter.Router;
-// var Route = ReactRouter.Route;
-// var Link = ReactRouter.Link;
-
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -51,8 +44,10 @@ class App extends React.Component {
     return (
       <div className="container">
         <div className="col s12"><h3 className="center">Good Eats</h3></div>
-        <CreateForm handleSubmitNewPlace={this.handleSubmitNewPlace.bind(this)}/>
-        <PlaceList places={this.state.data}/>
+        <div className="row">
+          <PlaceList places={this.state.data}/>
+          <CreateForm handleSubmitNewPlace={this.handleSubmitNewPlace.bind(this)}/>
+        </div>
       </div>
     );
   }
@@ -60,7 +55,3 @@ class App extends React.Component {
 
 window.App = App;
 
-// <ul>
-//   <li><Link to="/places">Places</Link></li>
-//   <li><Link to="/add">Add</Link></li>
-// </ul>
