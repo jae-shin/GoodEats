@@ -13,6 +13,13 @@ module.exports = function(app, express) {
       res.send(places);
     });
   });
+
+  app.post('/create', function(req, res) {
+    var place = req.body;
+    Place.create({name: place.name, time: place.time, menus: place.menus})
+      .then(place => res.status(201).end())
+      .catch(error => res.status(500).send({error: error.message}));
+  });
 };
 
 

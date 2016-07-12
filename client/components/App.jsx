@@ -15,7 +15,7 @@ class App extends React.Component {
 
   getAllPlaces() {
     $.ajax({
-      url: this.props.url, 
+      url: this.props.urlGET, 
       type: 'GET',
       dataType: 'json',
       success: function(data) {
@@ -27,6 +27,22 @@ class App extends React.Component {
     });
   }
 
+  handleSubmitNewPlace(place) {
+    $.ajax({
+      url: this.props.urlPOST, 
+      type: 'POST',
+      data: JSON.stringify(place),
+      contentType: 'application/json',
+      success: function(data) {
+        this.getAllPlaces();
+        console.log('successfully posted new place: ', place);
+      }.bind(this),
+      error: function(data) {
+        console.error('failed to post new place: ', data);
+      }
+    });
+  }
+
   componentDidMount() {
     this.getAllPlaces();
   }
@@ -34,8 +50,8 @@ class App extends React.Component {
   render() {
     return (
       <div className="container">
-        <h3>Good Eats</h3>
-        <CreateForm />
+        <div className="col s12"><h3 className="center">Good Eats</h3></div>
+        <CreateForm handleSubmitNewPlace={this.handleSubmitNewPlace.bind(this)}/>
         <PlaceList places={this.state.data}/>
       </div>
     );
