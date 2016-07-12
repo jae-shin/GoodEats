@@ -15,7 +15,7 @@ class App extends React.Component {
 
   getAllPlaces() {
     $.ajax({
-      url: this.props.urlGET, 
+      url: 'http://127.0.0.1:8080/places', 
       type: 'GET',
       dataType: 'json',
       success: function(data) {
@@ -51,8 +51,11 @@ class App extends React.Component {
     return (
       <div className="container">
         <div className="col s12"><h3 className="center">Good Eats</h3></div>
-        <CreateForm handleSubmitNewPlace={this.handleSubmitNewPlace.bind(this)}/>
-        <PlaceList places={this.state.data}/>
+        <ul role="nav">
+          <li><Link to="/places">Eat Spots</Link></li>
+          <li><Link to="/create">Add New</Link></li>
+        </ul>
+        {this.props.children}
       </div>
     );
   }
@@ -60,6 +63,9 @@ class App extends React.Component {
 
 window.App = App;
 
+
+// <CreateForm handleSubmitNewPlace={this.handleSubmitNewPlace.bind(this)}/>
+// <PlaceList places={this.state.data}/>
 // <ul>
 //   <li><Link to="/places">Places</Link></li>
 //   <li><Link to="/add">Add</Link></li>
