@@ -26,19 +26,20 @@ UserSchema.methods.comparePasswords = function(inputPassword) {
   });
 };
 
-var genSaltAsync = Promise.promisify(bcrypt.genSalt);
-var hashAsync = Promise.promisify(bcrypt.hash);
-
 UserSchema.pre('save', function(next) {
-  genSaltAsync
-    .then(function(salt) {
-      return hashAsync(this.password, salt, null).then(function(hashed) {
-        this.password = hashed;
-      });
-    })
-    .catch(function(err) {
-      console.log('error in hashing password');
+  bcrypt.genSalt(10, function (err, salt) {
+    if (err) {
+      throw err;
+    }
+    // hash the password along with our new salt
+    bcrypt.hash(this.password, salt, null, function (err, hash) {
+      if (err) {
+        throw err;
+      }
+      this.password = hash;
+      next();
     });
+  });
 });
 
 var User = mongoose.model('User', UserSchema);

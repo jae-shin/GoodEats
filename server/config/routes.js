@@ -6,7 +6,6 @@ module.exports = function(app, express) {
 
   app.get('/placesList', function(req, res) {
     Place.find().then(function(places) {
-      console.log('places: ', places);
       res.send(places);
     });
   });
@@ -18,11 +17,11 @@ module.exports = function(app, express) {
       .catch(error => res.status(500).send({error: error.message}));
   });
 
-  app.post('/signup', function(req, res) {
+  app.post('/signupNewUser', function(req, res) {
     var user = req.body;
     User.findOne({username: user.username})
-      .then(function(user) {
-        if (user) {
+      .then(function(result) {
+        if (result) {
           res.status(500).send({error: 'user already exists!'});
         } else {
           User.create({username: user.username, password: user.password})
@@ -38,15 +37,3 @@ module.exports = function(app, express) {
   });
 };
 
-
-
-// var testUser = new User({username: 'test', password: 'test'});
-// testUser.save(function(err) {
-//   if (err) {
-//     console.log('routes.js: err in saving testUser!');
-//   }
-// });
-
-// User.findOne({username: 'test'}).then(function(user) {
-//   res.json(user);
-// });

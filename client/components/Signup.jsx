@@ -28,11 +28,12 @@ class Signup extends React.Component {
       });
 
       $.ajax({
-        url: 'http://127.0.0.1:8080/signup', 
+        url: '/signupNewUser', 
         type: 'POST',
         data: JSON.stringify({username: username, password: password}),
         contentType: 'application/json',
         success: function(data) {
+          browserHistory.push('/places');
           console.log('successfully signed up!');
         }.bind(this),
         error: function(data) {
@@ -51,7 +52,7 @@ class Signup extends React.Component {
           onChange={this.handleUsernameChange.bind(this)}
         />
         <input 
-          type="text" placeholder="password" 
+          type="password" placeholder="password" 
           value={this.state.password}
           onChange={this.handlePasswordChange.bind(this)}
         />

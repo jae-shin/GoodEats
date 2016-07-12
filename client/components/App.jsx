@@ -13,6 +13,7 @@ class App extends React.Component {
           <ul role="nav">
             <Link to="/places">Eat Spots</Link>
             <Link to="/create">Add New</Link>
+            <Link to="/signup">Sign Up</Link>
           </ul>
           {this.props.children}
         </nav>

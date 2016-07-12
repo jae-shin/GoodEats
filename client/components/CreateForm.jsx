@@ -27,7 +27,6 @@ class CreateForm extends React.Component {
       data: JSON.stringify(place),
       contentType: 'application/json',
       success: function(data) {
-        // browserHistory push
         browserHistory.push('/places');
         console.log('successfully posted new place: ', place);
       }.bind(this),
