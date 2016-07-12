@@ -8,54 +8,22 @@
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      data: [ { name: '', time: '', menus: ''} ]
-    };
-  }
-
-  getAllPlaces() {
-    $.ajax({
-      url: 'http://127.0.0.1:8080/places', 
-      type: 'GET',
-      dataType: 'json',
-      success: function(data) {
-        this.setState({data: data});
-      }.bind(this),
-      error: function(data) {
-        console.error('failed to retreive from list of places: ', data);
-      }
-    });
-  }
-
-  handleSubmitNewPlace(place) {
-    $.ajax({
-      url: this.props.urlPOST, 
-      type: 'POST',
-      data: JSON.stringify(place),
-      contentType: 'application/json',
-      success: function(data) {
-        this.getAllPlaces();
-        console.log('successfully posted new place: ', place);
-      }.bind(this),
-      error: function(data) {
-        console.error('failed to post new place: ', data);
-      }
-    });
-  }
-
-  componentDidMount() {
-    this.getAllPlaces();
   }
 
   render() {
     return (
       <div className="container">
-        <div className="col s12"><h3 className="center">Good Eats</h3></div>
-        <ul role="nav">
-          <li><Link to="/places">Eat Spots</Link></li>
-          <li><Link to="/create">Add New</Link></li>
-        </ul>
-        {this.props.children}
+        <div className="col s12">
+          <h3 className="center"><Link to="/">Good Eats</Link></h3></div>
+        <div className="divider"></div>
+        <nav className="brown-text teal lighten-2">
+          <ul role="nav">
+            <Link to="/places">Eat Spots</Link>
+            <Link to="/create">Add New</Link>
+          </ul>
+          {this.props.children}
+        </nav>
+        <div className="divider"></div>
       </div>
     );
   }

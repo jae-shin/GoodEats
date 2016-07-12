@@ -8,16 +8,16 @@
 window.Router = window.ReactRouter.Router;
 window.Route = window.ReactRouter.Route;
 window.Link = window.ReactRouter.Link;
-window.hashHistory = window.ReactRouter.hashHistory;
+window.browserHistory = window.ReactRouter.browserHistory;
 window.IndexRoute = window.ReactRouter.IndexRoute;
 
 
 ReactDOM.render((
-  <Router history={hashHistory}>
+  <Router history={browserHistory}>
     <Route path="/" component={App}>
-      <IndexRoute componenet={PlaceList}/>
-      <Route path="/places" component={PlaceList}/>
-      <Route path="/create" component={CreateForm}/>
+      <IndexRoute component={PlaceList}/>
+      <Route path="places" component={PlaceList}/>
+      <Route path="create" component={CreateForm}/>
     </Route>
   </Router>
 ), document.getElementById('app'));
