@@ -10,7 +10,7 @@ var Place = mongoose.model('Place', PlaceSchema);
 
 var initializePlaces = [
   {
-    name: 'Buckhorn Grill (Mall)',
+    name: 'Buckhorn Grill',
     time: '2',
     menus: 'chicken avocado salad'
   },

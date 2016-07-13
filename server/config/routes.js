@@ -1,6 +1,7 @@
 var User = require('../models/user');
 var Place = require('../models/place');
 var path = require('path');
+var util = require('./util');
 
 module.exports = function(app, express) {
 
@@ -26,7 +27,7 @@ module.exports = function(app, express) {
         } else {
           User.create({username: user.username, password: user.password})
             .then(function(user) {
-              res.status(200).end();
+              util.createSession(req, res, user);
             });
         }
       });
@@ -41,18 +42,25 @@ module.exports = function(app, express) {
           result.comparePasswords(user.password)
             .then(function(match) {
               if (match) {
-                res.status(200).end();
+                util.createSession(req, res, result);
               } else {
                 res.status(500).send({error: 'user already exists!'});
               }
             })
             .catch(function(err) {
               console.log('error in comparePasswords');
+              res.status(500).send({error: 'error in comparing passwords'});
             });
         } else {
           res.status(500).send({error: 'user does not exist'});
         }
       });
+  });
+
+  app.get('/signoutUser', function(req, res) {
+    req.session.destroy(function() {
+      res.status(200).send({success: 'successfully signed out!'});
+    });
   });
 
   app.get('*', function(req, res) {

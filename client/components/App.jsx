@@ -3,6 +3,22 @@ class App extends React.Component {
     super(props);
   }
 
+  handleSignOut() {
+    $.ajax({
+      url: '/signoutUser', 
+      type: 'GET',
+      dataType: 'json',
+      success: function(data) {
+        browserHistory.push('/');
+        console.log('successfully signed out');
+      }.bind(this),
+      error: function(data) {
+        console.error('failed to sign out');
+      }
+    });
+  }
+
+
   render() {
     return (
       <div className="container">
@@ -15,6 +31,7 @@ class App extends React.Component {
             <Link to="/create">Add New</Link>
             <Link to="/signup">Sign Up</Link>
             <Link to="/signin">Sign In</Link>
+            <li className="white-text right" onClick={this.handleSignOut.bind(this)}>Sign Out</li>
           </ul>
           {this.props.children}
         </nav>

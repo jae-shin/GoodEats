@@ -7,17 +7,22 @@ var db = require('./config/db');
 // Express middleware
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
+var session = require('express-session');
 
 // set port to 8080
 var port = 8080;
 var app = express();
 
-// app.set('views', __dirname + '/views');
-// app.set('view engine', 'html');
+
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/../client'));
+app.use(session({
+  secret: 'good eats is a secret',
+  resave: false,
+  saveUninitialized: true
+}));
 
 // configure our server with routes
 require('./config/routes.js')(app, express);
