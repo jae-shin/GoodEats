@@ -12,6 +12,7 @@ ReactDOM.render((
       <Route path="places" component={PlaceList}/>
       <Route path="create" component={CreateForm}/>
       <Route path="signup" component={Signup}/>
+      <Route path="signin" component={Signin}/>
     </Route>
   </Router>
 ), document.getElementById('app'));

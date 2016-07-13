@@ -15,9 +15,15 @@ var UserSchema = mongoose.Schema({
 });
 
 UserSchema.methods.comparePasswords = function(inputPassword) {
+  var user = this;
   return new Promise(function(resolve, reject) {
-    bcrypt.compare(inputPassword, this.password, function(err, result) {
+    bcrypt.compare(inputPassword, user.password, function(err, result) {
+
+      console.log('user database password: ', user.password);
+      console.log('input password: ', inputPassword);
+      console.log('inside compare bcrypt password');
       if (err) {
+        console.log('err');
         reject(err);
       } else {
         resolve(result);
@@ -27,21 +33,28 @@ UserSchema.methods.comparePasswords = function(inputPassword) {
 };
 
 UserSchema.pre('save', function(next) {
+  var user = this;
   bcrypt.genSalt(10, function (err, salt) {
     if (err) {
       throw err;
     }
-    // hash the password along with our new salt
-    bcrypt.hash(this.password, salt, null, function (err, hash) {
+    bcrypt.hash(user.password, salt, null, function (err, hash) {
       if (err) {
         throw err;
       }
-      this.password = hash;
+      user.password = hash;
       next();
     });
   });
 });
 
 var User = mongoose.model('User', UserSchema);
+
+// User.remove({ username: 'jae' }, function (err) {
+//   if (err) {
+//     console.log('error in removing user');
+//   }
+// });
+
 
 module.exports = User;

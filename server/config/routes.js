@@ -32,6 +32,29 @@ module.exports = function(app, express) {
       });
   });
 
+  app.post('/signinUser', function(req, res) {
+    var user = req.body;
+    User.findOne({username: user.username})
+      .then(function(result) {
+        console.log('result is: ', result);
+        if (result) {
+          result.comparePasswords(user.password)
+            .then(function(match) {
+              if (match) {
+                res.status(200).end();
+              } else {
+                res.status(500).send({error: 'user already exists!'});
+              }
+            })
+            .catch(function(err) {
+              console.log('error in comparePasswords');
+            });
+        } else {
+          res.status(500).send({error: 'user does not exist'});
+        }
+      });
+  });
+
   app.get('*', function(req, res) {
     res.sendFile(path.join(__dirname, '../../client/index.html'));
   });

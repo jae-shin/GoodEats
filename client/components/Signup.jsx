@@ -37,7 +37,7 @@ class Signup extends React.Component {
           console.log('successfully signed up!');
         }.bind(this),
         error: function(data) {
-          console.error('failed to sign up');
+          alert('User already exists! Please sign in');
         }
       });
     }

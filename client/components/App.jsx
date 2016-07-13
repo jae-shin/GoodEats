@@ -14,6 +14,7 @@ class App extends React.Component {
             <Link to="/places">Eat Spots</Link>
             <Link to="/create">Add New</Link>
             <Link to="/signup">Sign Up</Link>
+            <Link to="/signin">Sign In</Link>
           </ul>
           {this.props.children}
         </nav>

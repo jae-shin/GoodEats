@@ -2,70 +2,66 @@ class Signin extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
-      time: '',
-      menus: ''
+      username: '',
+      password: '',
     };
   }
 
-  handleNameChange(e) {
-    this.setState({name: e.target.value});
+  handleUsernameChange(e) {
+    this.setState({username: e.target.value});
   }
 
-  handleTimeChange(e) {
-    this.setState({time: e.target.value});
+  handlePasswordChange(e) {
+    this.setState({password: e.target.value});
   }
 
-  handleMenusChange(e) {
-    this.setState({menus: e.target.value});
-  }
-
-  handleSubmit(e) {
+  handleSignup(e) {
     e.preventDefault();
 
-    var name = this.state.name.trim();
-    var time = this.state.time;
-    var menus = this.state.menus.trim();
+    var username = this.state.username;
+    var password = this.state.password;
 
-    if (name && time && menus) {
+    if (username && password) {
       this.setState({
-        name: '',
-        time: '',
-        menus: ''
+        username: '',
+        password: ''
       });
 
-      this.props.handleSubmitNewPlace({
-        name: name,
-        time: time,
-        menus: menus
+      $.ajax({
+        url: '/signinUser', 
+        type: 'POST',
+        data: JSON.stringify({username: username, password: password}),
+        contentType: 'application/json',
+        success: function(data) {
+          browserHistory.push('/places');
+          console.log('successfully signed in!');
+        }.bind(this),
+        error: function(data) {
+          alert('Incorrect username or password!');
+        }
       });
     }
   }
   
   render() {
     return (
-      <form className="section" onSubmit={this.handleSubmit.bind(this)}>
+      <form className="section" onSubmit={this.handleSignup.bind(this)}>
         <input 
-          type="text" placeholder="name of the place" 
-          value={this.state.name}
-          onChange={this.handleNameChange.bind(this)}
+          type="text" placeholder="username" 
+          value={this.state.username}
+          onChange={this.handleUsernameChange.bind(this)}
         />
         <input 
-          type="number" placeholder="walking time in mins" 
-          value={this.state.time}
-          onChange={this.handleTimeChange.bind(this)}
+          type="password" placeholder="password" 
+          value={this.state.password}
+          onChange={this.handlePasswordChange.bind(this)}
         />
-        <input 
-          type="text" placeholder="good dishes" 
-          value={this.state.menus}
-          onChange={this.handleMenusChange.bind(this)}
-        />
-        <button className="btn waves-effect waves-light" type="submit" name="action">add a new eat spot!</button>
+        <button className="btn waves-effect waves-light" type="submit" name="action">sign in</button>
       </form>
     );
   }
 }
 
-window.CreateForm = CreateForm;
+window.Signin = Signin;
 
 // <i className="material-icons right">send</i>
