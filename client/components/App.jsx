@@ -25,7 +25,7 @@ class App extends React.Component {
         <div className="col s12">
           <h3 className="center"><Link to="/">Good Eats</Link></h3></div>
         <div className="divider"></div>
-        <nav className="brown-text teal lighten-2">
+        <nav className="flow-text brown-text teal lighten-2">
           <ul role="nav">
             <Link to="/places">Eat Spots</Link>
             <Link to="/create">Add New</Link>
