@@ -11,17 +11,17 @@ var Place = mongoose.model('Place', PlaceSchema);
 var initializePlaces = [
   {
     name: 'Buckhorn Grill',
-    time: '2',
+    time: 2,
     menus: 'chicken avocado salad'
   },
   {
     name: 'Bio Cafe',
-    time: '8',
+    time: 8,
     menus: 'salmon sandwich'
   },
   {
     name: 'Freshroll-Vietnamese Rolls & Bowls',
-    time: '9',
+    time: 9,
     menus: '3 freshrolls combo'
   }
 ];
